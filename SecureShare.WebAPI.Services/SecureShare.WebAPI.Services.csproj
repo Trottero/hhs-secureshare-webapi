@@ -5,7 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\SecureShare.WebApi.Core\SecureShare.WebAPI.Core.csproj" />
+    <ProjectReference Include="..\SecureShare.WebAPI.Infrastructure\SecureShare.WebAPI.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

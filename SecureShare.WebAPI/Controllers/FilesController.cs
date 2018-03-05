@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SecureShare.WebApi.Core.Models;
+using SecureShare.WebAPI.Infrastructure;
 
 namespace SecureShare.WebAPI.Controllers
 {
@@ -13,18 +14,19 @@ namespace SecureShare.WebAPI.Controllers
     [Route("api/Files")]
     public class FilesController : Controller
     {
-        private readonly SecureShareWebAPIContext _context;
+        private readonly IFileService _fileService;
 
-        public FilesController(SecureShareWebAPIContext context)
+        public FilesController(IFileService fileService)
         {
-            _context = context;
+            _fileService = fileService;
         }
 
         // GET: api/Files
         [HttpGet]
         public IEnumerable<File> GetFile()
         {
-            return _context.File;
+            //return all files
+            return null;
         }
 
         // GET: api/Files/5
@@ -36,7 +38,7 @@ namespace SecureShare.WebAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var file = await _context.File.SingleOrDefaultAsync(m => m.FileId == id);
+            var file = await _fileService.GetById(id);
 
             if (file == null)
             {
@@ -44,41 +46,6 @@ namespace SecureShare.WebAPI.Controllers
             }
 
             return Ok(file);
-        }
-
-        // PUT: api/Files/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutFile([FromRoute] Guid id, [FromBody] File file)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != file.FileId)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(file).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!FileExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
         }
 
         // POST: api/Files
@@ -90,10 +57,11 @@ namespace SecureShare.WebAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            _context.File.Add(file);
-            await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetFile", new { id = file.FileId }, file);
+            //add file
+            await _fileService.AddAsync(file);
+
+            return CreatedAtAction("GetFile", new { id = file.FileGuid }, file);
         }
 
         // DELETE: api/Files/5
@@ -105,21 +73,16 @@ namespace SecureShare.WebAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var file = await _context.File.SingleOrDefaultAsync(m => m.FileId == id);
+            //delete file
+            var file = await _fileService.GetById(id);
             if (file == null)
             {
                 return NotFound();
             }
 
-            _context.File.Remove(file);
-            await _context.SaveChangesAsync();
+            await _fileService.DeleteById(file.FileGuid);
 
             return Ok(file);
-        }
-
-        private bool FileExists(Guid id)
-        {
-            return _context.File.Any(e => e.FileId == id);
         }
     }
 }

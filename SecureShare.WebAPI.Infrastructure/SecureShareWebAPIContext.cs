@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using SecureShare.WebApi.Core.Models;
+﻿using Microsoft.EntityFrameworkCore;
 
+namespace SecureShare.WebAPI.Data
+{
     public class SecureShareWebAPIContext : DbContext
     {
         public SecureShareWebAPIContext (DbContextOptions<SecureShareWebAPIContext> options)
@@ -14,3 +11,4 @@ using SecureShare.WebApi.Core.Models;
 
         public DbSet<SecureShare.WebApi.Core.Models.File> File { get; set; }
     }
+}
