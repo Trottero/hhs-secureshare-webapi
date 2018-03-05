@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecureShare.WebAPI", "SecureShare.WebAPI\SecureShare.WebAPI.csproj", "{DA51BE33-39E9-4C98-982D-E8099BCF3E4C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA51BE33-39E9-4C98-982D-E8099BCF3E4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA51BE33-39E9-4C98-982D-E8099BCF3E4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA51BE33-39E9-4C98-982D-E8099BCF3E4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA51BE33-39E9-4C98-982D-E8099BCF3E4C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {69E97840-8531-45EF-BD07-37DE8AD2C76F}
+	EndGlobalSection
+EndGlobal
