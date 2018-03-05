@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecureShare.WebAPI", "SecureShare.WebAPI\SecureShare.WebAPI.csproj", "{DA51BE33-39E9-4C98-982D-E8099BCF3E4C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SecureShare.WebAPI", "SecureShare.WebAPI\SecureShare.WebAPI.csproj", "{DA51BE33-39E9-4C98-982D-E8099BCF3E4C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecureShare.WebAPI.Services", "SecureShare.WebAPI.Services\SecureShare.WebAPI.Services.csproj", "{521F61CD-18CE-4677-B575-84125FA99205}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecureShare.WebAPI.Infrastructure", "SecureShare.WebAPI.Infrastructure\SecureShare.WebAPI.Infrastructure.csproj", "{876041E1-CD3A-45D8-8B3B-9C84AE25803B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecureShare.WebAPI.Core", "SecureShare.WebAPI.Core\SecureShare.WebAPI.Core.csproj", "{D9C3D932-5B60-48E8-ADC8-F605E2937FE7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{DA51BE33-39E9-4C98-982D-E8099BCF3E4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA51BE33-39E9-4C98-982D-E8099BCF3E4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA51BE33-39E9-4C98-982D-E8099BCF3E4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{521F61CD-18CE-4677-B575-84125FA99205}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{521F61CD-18CE-4677-B575-84125FA99205}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{521F61CD-18CE-4677-B575-84125FA99205}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{521F61CD-18CE-4677-B575-84125FA99205}.Release|Any CPU.Build.0 = Release|Any CPU
+		{876041E1-CD3A-45D8-8B3B-9C84AE25803B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{876041E1-CD3A-45D8-8B3B-9C84AE25803B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{876041E1-CD3A-45D8-8B3B-9C84AE25803B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{876041E1-CD3A-45D8-8B3B-9C84AE25803B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9C3D932-5B60-48E8-ADC8-F605E2937FE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9C3D932-5B60-48E8-ADC8-F605E2937FE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9C3D932-5B60-48E8-ADC8-F605E2937FE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9C3D932-5B60-48E8-ADC8-F605E2937FE7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
