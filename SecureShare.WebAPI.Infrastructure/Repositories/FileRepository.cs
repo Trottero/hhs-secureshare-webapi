@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore.Extensions.Internal;
 using SecureShare.WebApi.Core.Models;
 using SecureShare.WebAPI.Core.Interfaces;
-using SecureShare.WebAPI.Data;
 
 namespace SecureShare.WebAPI.Infrastructure.Repositories
 {

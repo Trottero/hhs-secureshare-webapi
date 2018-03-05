@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SecureShare.WebApi.Core.Models;
+using System;
 
-namespace SecureShare.WebAPI.Data
+namespace SecureShare.WebAPI.Infrastructure
 {
     public class SecureShareWebAPIContext : DbContext
     {
@@ -9,6 +11,11 @@ namespace SecureShare.WebAPI.Data
         {
         }
 
-        public DbSet<SecureShare.WebApi.Core.Models.File> File { get; set; }
+        public DbSet<File> File { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<File>().ToTable("Files");
+        }
     }
 }
