@@ -4,4 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SecureShare.WebAPI.Core\SecureShare.WebAPI.Core.csproj" />
+    <ProjectReference Include="..\SecureShare.WebAPI.Infrastructure\SecureShare.WebAPI.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
@@ -16,6 +15,11 @@
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SecureShare.WebAPI.Core\SecureShare.WebAPI.Core.csproj" />
+    <ProjectReference Include="..\SecureShare.WebAPI.Services\SecureShare.WebAPI.Services.csproj" />
   </ItemGroup>
 
 </Project>

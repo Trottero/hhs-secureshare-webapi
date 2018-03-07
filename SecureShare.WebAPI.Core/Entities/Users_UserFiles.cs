@@ -2,21 +2,20 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text;
 
 namespace SecureShare.WebAPI.Core.Entities
 {
-    public class UserFile: Entity
+    public class Users_UserFiles : Entity
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Key]
+        public Guid PermissionId { get; set; }
+        public Guid UserId { get; set; }
         public Guid UserFileId { get; set; }
 
-        public string FileName { get; set; }
+        public User User { get; set; }
+        public UserFile UserFile { get; set; }
 
-        [Required]
-        public Guid OwnerId { get; set; }
-        public User Owner { get; set; }
-
-        public ICollection<Users_UserFiles> SharedWith { get; set; }
+        public DateTime ExperingDate { get; set; }
     }
 }
