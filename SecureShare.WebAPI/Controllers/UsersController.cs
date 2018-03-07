@@ -15,10 +15,10 @@ namespace SecureShare.WebAPI.Controllers
     [Route("api/Users")]
     public class UsersController : Controller
     {
-        private readonly IEntityService<User> _userService;
+        private readonly IUserService _userService;
         private readonly SecureShareWebAPIContext _context;
 
-        public UsersController(SecureShareWebAPIContext context, IEntityService<User> userService)
+        public UsersController(SecureShareWebAPIContext context, IUserService userService)
         {
             _context = context;
             _userService = userService;
@@ -26,10 +26,10 @@ namespace SecureShare.WebAPI.Controllers
 
         // GET: api/UserFiles
         [HttpGet]
-        public async Task<IEnumerable<User>> GetUser()
+        public async Task<IEnumerable<User>> GetUsers()
         {
             _context.Database.EnsureCreated();
-            return await _userService.GetAllAsync();
+            return await _userService.GetAllUserWithSharedFilesAsync();
         }
 
         // GET: api/UserFiles/5
@@ -41,7 +41,7 @@ namespace SecureShare.WebAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = await _userService.GetByIdAsync(id);
+            var user = await _userService.GetUserWithSharedFilesAsync(id);
 
             if (user == null)
             {

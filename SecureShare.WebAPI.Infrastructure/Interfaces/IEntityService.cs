@@ -10,11 +10,11 @@ namespace SecureShare.WebAPI.Infrastructure.Interfaces
     public interface IEntityService<TEntity> where TEntity : Entity
     {
         Task<IEnumerable<TEntity>> GetAllAsync();
-        Task<IEnumerable<TEntity>> GetAsync(Expression<Func<TEntity, bool>> filter = null,
-            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-            Func<IQueryable<TEntity>, IQueryable<TEntity>> includes = null,
-            int? skip = null,
-            int? take = null);
+        //Task<IEnumerable<TEntity>> GetAsync(Expression<Func<TEntity, bool>> filter = null,
+        //    Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
+        //    Func<IQueryable<TEntity>, IQueryable<TEntity>> includes = null,
+        //    int? skip = null,
+        //    int? take = null);
         Task<TEntity> GetByIdAsync(object entityId);
         Task<TEntity> GetByMultipleIdsAsync(object id1, object id2);
 

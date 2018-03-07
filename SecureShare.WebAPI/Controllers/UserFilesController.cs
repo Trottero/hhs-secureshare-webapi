@@ -18,13 +18,11 @@ namespace SecureShare.WebAPI.Controllers
     {
         private readonly IUserFileService _userFileService;
         private readonly SecureShareWebAPIContext _context;
-        private readonly IEntityService<Users_UserFiles> _userfilesUsersEntityService;
 
         public UserFilesController(SecureShareWebAPIContext context, IUserFileService userFileService, IEntityService<Users_UserFiles> userfilesUsersEntityService)
         {
             _context = context;
             _userFileService = userFileService;
-            _userfilesUsersEntityService = userfilesUsersEntityService;
         }
 
         // GET: api/UserFiles
@@ -32,7 +30,7 @@ namespace SecureShare.WebAPI.Controllers
         public async Task<IActionResult> GetUserFile()
         {
             _context.Database.EnsureCreated();
-            return Ok(await _userFileService.GetAllAsync();
+            return Ok(await _userFileService.GetAllAsync());
         }
 
         // GET: api/UserFiles/5

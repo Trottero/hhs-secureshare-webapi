@@ -18,16 +18,14 @@ namespace SecureShare.WebAPI.Services.Services
             _userFileRepository = userFileRepository;
         }
 
-        public Task<UserFile> GetUserFileWithUser(Guid id)
+        public Task<UserFile> GetUserFileWithUserAsync(Guid id)
         {
             return _userFileRepository.GetOneAsync(null, e => e.Include(o => o.Owner));
         }
 
         public new Task<IEnumerable<UserFile>> GetAllAsync()
         {
-            var fuckyou = GetAsync(null, null, e => e.Include(o => o.Owner).Include(z => z.SharedWith));
-
-            return fuckyou;
+            return GetAsync(null, null, e => e.Include(o => o.Owner).Include(z => z.SharedWith));
         }
     }
 }

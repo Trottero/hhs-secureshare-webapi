@@ -13,7 +13,7 @@ namespace SecureShare.WebAPI.Core.Entities
         public Guid UserId { get; set; }
         public string DisplayName { get; set; }
 
-        //public IEnumerable<UserFile> Files { get; set; }
+        public IEnumerable<UserFile> Files { get; set; }
         public ICollection<Users_UserFiles> FilesSharedWithUser { get; set; }
     }
 }

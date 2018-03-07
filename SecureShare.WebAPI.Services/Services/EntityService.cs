@@ -38,7 +38,7 @@ namespace SecureShare.WebAPI.Services.Services
             return _entityRepository.GetAllAsync();
         }
 
-        public Task<IEnumerable<TEntity>> GetAsync(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, Func<IQueryable<TEntity>, IQueryable<TEntity>> includes = null, int? skip = null, int? take = null)
+        internal Task<IEnumerable<TEntity>> GetAsync(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, Func<IQueryable<TEntity>, IQueryable<TEntity>> includes = null, int? skip = null, int? take = null)
         {
             return _entityRepository.GetAsync(filter, orderBy, includes, skip, take);
         }

@@ -6,8 +6,9 @@ using SecureShare.WebAPI.Core.Entities;
 
 namespace SecureShare.WebAPI.Infrastructure.Interfaces
 {
-    public interface IUserFileService : IEntityService<UserFile>
+    public interface IUserService : IEntityService<User>
     {
-        Task<UserFile> GetUserFileWithUserAsync(Guid id);
+        Task<User> GetUserWithSharedFilesAsync(Guid id);
+        Task<IEnumerable<User>> GetAllUserWithSharedFilesAsync();
     }
 }
