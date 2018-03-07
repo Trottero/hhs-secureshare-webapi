@@ -24,7 +24,7 @@ namespace SecureShare.WebAPI.Controllers
             _userService = userService;
         }
 
-        // GET: api/UserFiles
+        // GET: api/Users
         [HttpGet]
         public async Task<IEnumerable<User>> GetUsers()
         {
@@ -32,7 +32,7 @@ namespace SecureShare.WebAPI.Controllers
             return await _userService.GetAllUserWithSharedFilesAsync();
         }
 
-        // GET: api/UserFiles/5
+        // GET: api/Users
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUser([FromRoute] Guid id)
         {
@@ -51,7 +51,7 @@ namespace SecureShare.WebAPI.Controllers
             return Ok(user);
         }
 
-        // POST: api/UserFiles
+        // POST: api/Users
         [HttpPost]
         public async Task<IActionResult> PostUser([FromBody] User user)
         {
@@ -65,7 +65,7 @@ namespace SecureShare.WebAPI.Controllers
             return CreatedAtAction("GetUser", new { id = user.UserId }, user);
         }
 
-        // DELETE: api/UserFiles/5
+        // DELETE: api/Users/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser([FromRoute] Guid id)
         {
