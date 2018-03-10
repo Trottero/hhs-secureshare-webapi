@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using SecureShare.WebAPI.Core.Entities;
 using SecureShare.WebAPI.Core.Interfaces;
 using SecureShare.WebAPI.Infrastructure.Interfaces;
+using SecureShare.WebAPI.Services.Services;
 
 namespace SecureShare.WebAPI.Controllers
 {
@@ -61,7 +62,6 @@ namespace SecureShare.WebAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-
             await _userFileService.AddAsync(userFile);
 
             return CreatedAtAction("GetUserFile", new { id = userFile.UserFileId }, userFile);

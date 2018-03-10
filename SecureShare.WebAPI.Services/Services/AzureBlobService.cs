@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 using SecureShare.WebAPI.Infrastructure.Interfaces;
@@ -12,24 +13,25 @@ namespace SecureShare.WebAPI.Services.Services
 {
     public class AzureBlobService : IAzureBlobService
     {
+        private readonly IConfiguration _configuration;
         private readonly CloudBlobClient _cloudBlobClient;
-        public AzureBlobService()
+        public AzureBlobService(IConfiguration configuration)
         {
-            CloudStorageAccount.TryParse(
-                "DefaultEndpointsProtocol=https;AccountName=securesharedevstorage;AccountKey=PJzoja7Zf+I/pAvhA9aVCeBvYikzqbwmpEAWk+l3W1kmtsoECruev6jzCBXh/akSC0NN0YNf3UlTpvWErHeBmA==;EndpointSuffix=core.windows.net",
+            _configuration = configuration;
+            CloudStorageAccount.TryParse(_configuration.GetConnectionString("SecureShareStorageAccount"),
                 out var cloudStorageAccount);
             _cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
         }
 
         //uploads the given file and returns the ID that it was uploaded under
-        public async Task<Guid> AddToBlobAsync(string container, IFormFile file)
+        public async Task<Guid> AddToBlobAsync(string container, FileStream file)
         {
             var cloudBlobContainer = _cloudBlobClient.GetContainerReference(container);
             await cloudBlobContainer.CreateIfNotExistsAsync();
 
             var blobId = Guid.NewGuid();
             var blobReference = cloudBlobContainer.GetBlockBlobReference(blobId.ToString());
-            await blobReference.UploadFromStreamAsync(file.OpenReadStream());
+            await blobReference.UploadFromStreamAsync(file);
             return blobId;
         }
 
