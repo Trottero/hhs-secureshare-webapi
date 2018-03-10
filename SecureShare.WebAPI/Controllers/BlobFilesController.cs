@@ -23,7 +23,7 @@ namespace SecureShare.WebAPI.Controllers
 
         //POST: api/blob/add/
         //Include file in the body as multipart/form-data
-        [HttpPost("add")]
+        [HttpPost]
         public async Task<IActionResult> PostFileToBlob(IFormFile file)
         {
             if (file == null)
@@ -32,15 +32,15 @@ namespace SecureShare.WebAPI.Controllers
             return Ok(blobId);
         }
     
-        //GET: api/blob/get/0000-00000-0000
-        [HttpGet("get/{id}")]
+        //GET: api/blob/0000-00000-0000
+        [HttpGet("{id}")]
         public async Task<FileStream> GetFileFromBlob([FromRoute]Guid id)
         {
             return (await _azureBlobService.GetFromBlobAsync("files", id.ToString()));
         }
 
-        //DELETE: api/blob/delete/{id}
-        [HttpDelete("delete/{id}")]
+        //DELETE: api/blob/{id}
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBlob([FromRoute] Guid id)
         {
             if (!ModelState.IsValid)
