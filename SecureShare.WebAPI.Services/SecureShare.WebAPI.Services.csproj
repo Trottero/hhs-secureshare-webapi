@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="2.0.1" />
+    <PackageReference Include="WindowsAzure.Storage" Version="9.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SecureShare.WebAPI.Core\SecureShare.WebAPI.Core.csproj" />
     <ProjectReference Include="..\SecureShare.WebAPI.Infrastructure\SecureShare.WebAPI.Infrastructure.csproj" />
   </ItemGroup>

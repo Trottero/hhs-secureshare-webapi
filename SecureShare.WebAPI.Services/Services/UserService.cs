@@ -12,18 +12,20 @@ namespace SecureShare.WebAPI.Services.Services
 {
     public class UserService : EntityService<User>, IUserService
     {
-        public UserService(IRepository<User> userRepository):base(userRepository)
+        private readonly IUserRepository _userRepository;
+
+        public UserService(IUserRepository userRepository):base(userRepository)
         {
+            _userRepository = userRepository;
         }
         public async Task<User> GetUserWithSharedFilesAsync(Guid id)
         {
-            return (await GetAsync(e => e.UserId == id, null,
-                e => e.Include(f => f.Files).Include(z => z.FilesSharedWithUser))).SingleOrDefault();
+            return await _userRepository.GetUserWithSharedFilesAsync(id);
         }
 
         public async Task<IEnumerable<User>> GetAllUserWithSharedFilesAsync()
         {
-            return await GetAsync(null, null, e => e.Include(f => f.Files).Include(z => z.FilesSharedWithUser));
+            return await _userRepository.GetAllUserWithSharedFilesAsync();
         }
     }
 }

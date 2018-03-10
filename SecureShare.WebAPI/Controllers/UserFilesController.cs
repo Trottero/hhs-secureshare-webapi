@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -19,7 +20,7 @@ namespace SecureShare.WebAPI.Controllers
         private readonly IUserFileService _userFileService;
         private readonly SecureShareWebAPIContext _context;
 
-        public UserFilesController(SecureShareWebAPIContext context, IUserFileService userFileService, IEntityService<Users_UserFiles> userfilesUsersEntityService)
+        public UserFilesController(SecureShareWebAPIContext context, IUserFileService userFileService)
         {
             _context = context;
             _userFileService = userFileService;
@@ -30,7 +31,7 @@ namespace SecureShare.WebAPI.Controllers
         public async Task<IActionResult> GetUserFile()
         {
             _context.Database.EnsureCreated();
-            return Ok(await _userFileService.GetAllAsync());
+            return Ok(await _userFileService.GetAllWithOwnerAndSharedWithAsync());
         }
 
         // GET: api/UserFiles/5

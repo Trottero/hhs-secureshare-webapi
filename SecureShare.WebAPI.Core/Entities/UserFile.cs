@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Http;
 
 namespace SecureShare.WebAPI.Core.Entities
 {
@@ -11,6 +12,7 @@ namespace SecureShare.WebAPI.Core.Entities
         [Key]
         public Guid UserFileId { get; set; }
 
+        [Required]
         public string FileName { get; set; }
 
         [Required]
@@ -18,5 +20,12 @@ namespace SecureShare.WebAPI.Core.Entities
         public User Owner { get; set; }
 
         public ICollection<Users_UserFiles> SharedWith { get; set; }
+
+        public DateTime UploadDateTime { get; set; }
+        public DateTime DownloaDateTime { get; set; }
+        public string Description { get; set; }
+
+        [Required]
+        public Guid BlobId { get; set; }
     }
 }

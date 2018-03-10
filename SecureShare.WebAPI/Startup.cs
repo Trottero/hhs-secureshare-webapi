@@ -31,7 +31,13 @@ namespace SecureShare.WebAPI
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped(typeof(IReadOnlyRepository<>), typeof(ReadOnlyRepository<>));
 
+            //custom repositories
+            services.AddTransient<IUserFileRepository, UserFileRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+
             services.AddTransient<IUserFileService, UserFileService>();
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IAzureBlobService, AzureBlobService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

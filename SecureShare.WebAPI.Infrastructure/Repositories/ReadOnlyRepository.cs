@@ -53,7 +53,7 @@ namespace SecureShare.WebAPI.Infrastructure.Repositories
             return query;
         }
 
-        public virtual async Task<IEnumerable<TEntity>> GetAllAsync(
+        internal virtual async Task<IEnumerable<TEntity>> GetAllAsync(
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             Func<IQueryable<TEntity>, IQueryable<TEntity>> includes = null,
             int? take = null,
@@ -62,7 +62,7 @@ namespace SecureShare.WebAPI.Infrastructure.Repositories
             return await GetQueryable(null, orderBy, includes, take, skip).ToListAsync();
         }
 
-        public virtual async Task<IEnumerable<TEntity>> GetAsync(
+        internal virtual async Task<IEnumerable<TEntity>> GetAsync(
             Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             Func<IQueryable<TEntity>, IQueryable<TEntity>> includes = null,
@@ -72,14 +72,14 @@ namespace SecureShare.WebAPI.Infrastructure.Repositories
             return await GetQueryable(filter, orderBy, includes, take, skip).ToListAsync();
         }
 
-        public virtual async Task<TEntity> GetOneAsync(
+        internal virtual async Task<TEntity> GetOneAsync(
             Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, IQueryable<TEntity>> includes = null)
         {
             return await GetQueryable(filter, null, includes).SingleOrDefaultAsync();
         }
 
-        public virtual async Task<TEntity> GetFirstAsync(
+        internal virtual async Task<TEntity> GetFirstAsync(
             Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             Func<IQueryable<TEntity>, IQueryable<TEntity>> includes = null)
@@ -95,6 +95,11 @@ namespace SecureShare.WebAPI.Infrastructure.Repositories
         public virtual Task<TEntity> GetByMultipleIdsAsync(object id1, object id2)
         {
             return _dbSet.FindAsync(id1, id2);
+        }
+
+        public async Task<IEnumerable<TEntity>> GetAllAsync()
+        {
+            return await GetQueryable().ToListAsync();
         }
 
         public virtual Task<int> GetCountAsync(Expression<Func<TEntity, bool>> filter = null)
