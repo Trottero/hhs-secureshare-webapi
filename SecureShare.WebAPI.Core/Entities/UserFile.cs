@@ -22,7 +22,7 @@ namespace SecureShare.WebAPI.Core.Entities
         public ICollection<Users_UserFiles> SharedWith { get; set; }
 
         public DateTime UploadDateTime { get; set; }
-        public DateTime DownloaDateTime { get; set; }
+        public DateTime DownloadDateTime { get; set; }
         public string Description { get; set; }
 
         [Required]

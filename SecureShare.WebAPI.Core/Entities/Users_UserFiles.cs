@@ -16,6 +16,6 @@ namespace SecureShare.WebAPI.Core.Entities
         public User User { get; set; }
         public UserFile UserFile { get; set; }
 
-        public DateTime ExperingDate { get; set; }
+        public DateTime ExpiringDate { get; set; }
     }
 }
