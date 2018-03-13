@@ -15,21 +15,14 @@ namespace SecureShare.WebAPI.Services.Services
     public class UserFileService : EntityService<UserFile>, IUserFileService
     {
         private readonly IUserFileRepository _userFileRepository;
-        private readonly IAzureBlobService _azureBlobService;
-        private readonly IConfiguration _configuration;
 
         public UserFileService(IUserFileRepository userFileRepository, IAzureBlobService azureBlobService, IConfiguration configuration) : base(userFileRepository)
         {
             _userFileRepository = userFileRepository;
-            _azureBlobService = azureBlobService;
-            _configuration = configuration;
         }
 
         public new async Task<UserFile> AddAsync(UserFile userFile)
         {
-            var blobId = await _azureBlobService.AddToBlobAsync(_configuration["BlobContainer"],
-                FileConverterService.ConvertBase64ToFileStream(userFile.FileEncodedToBase64));
-            userFile.BlobId = blobId;
             userFile.UploadDateTime = DateTime.Now;
             return await base.AddAsync(userFile);
         }
@@ -37,9 +30,6 @@ namespace SecureShare.WebAPI.Services.Services
         public async Task<UserFile> GetUserFileWithUserAsync(Guid id)
         {
             var userFile =  await _userFileRepository.GetUserFileWithUserAsync(id);
-            userFile.FileEncodedToBase64 =
-                FileConverterService.ConvertFileToBase64(
-                    await _azureBlobService.GetFromBlobAsync(_configuration["BlobContainer"], userFile.BlobId.ToString()));
 
             return userFile;
         }

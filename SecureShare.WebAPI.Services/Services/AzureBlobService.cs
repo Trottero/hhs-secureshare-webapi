@@ -24,14 +24,14 @@ namespace SecureShare.WebAPI.Services.Services
         }
 
         //uploads the given file and returns the ID that it was uploaded under
-        public async Task<Guid> AddToBlobAsync(string container, FileStream file)
+        public async Task<Guid> AddToBlobAsync(string container, IFormFile file)
         {
             var cloudBlobContainer = _cloudBlobClient.GetContainerReference(container);
             await cloudBlobContainer.CreateIfNotExistsAsync();
 
             var blobId = Guid.NewGuid();
             var blobReference = cloudBlobContainer.GetBlockBlobReference(blobId.ToString());
-            await blobReference.UploadFromStreamAsync(file);
+            await blobReference.UploadFromStreamAsync(file.OpenReadStream());
             return blobId;
         }
 

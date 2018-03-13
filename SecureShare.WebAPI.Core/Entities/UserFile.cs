@@ -26,8 +26,6 @@ namespace SecureShare.WebAPI.Core.Entities
         public string Description { get; set; }
 
         [Required]
-        [NotMapped]
-        public string FileEncodedToBase64 { get; set; }
         public Guid BlobId { get; set; }
     }
 }

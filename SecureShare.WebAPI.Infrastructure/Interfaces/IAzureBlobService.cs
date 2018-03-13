@@ -9,7 +9,7 @@ namespace SecureShare.WebAPI.Infrastructure.Interfaces
 {
     public interface IAzureBlobService
     {
-        Task<Guid> AddToBlobAsync(string container, FileStream file);
+        Task<Guid> AddToBlobAsync(string container, IFormFile file);
         Task<FileStream> GetFromBlobAsync(string container, string blobId);
         Task<Guid> DeleteFromBlobAsync(string container, string blobId);
     }
