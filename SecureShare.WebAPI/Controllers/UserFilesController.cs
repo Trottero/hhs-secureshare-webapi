@@ -15,7 +15,7 @@ using SecureShare.WebAPI.Services.Services;
 namespace SecureShare.WebAPI.Controllers
 {
     [Produces("application/json")]
-    [Route("api/UserFiles")]
+    [Route("api/files")]
     public class UserFilesController : Controller
     {
         private readonly IUserFileService _userFileService;
