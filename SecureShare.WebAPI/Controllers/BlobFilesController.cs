@@ -14,6 +14,7 @@ namespace SecureShare.WebAPI.Controllers
     [Consumes("multipart/form-data", "application/json")]
     public class BlobFilesController : Controller
     {
+        //this controller should manage the blobs on azure
         private readonly IAzureBlobService _azureBlobService;
 
         public BlobFilesController(IAzureBlobService azureBlobService)
