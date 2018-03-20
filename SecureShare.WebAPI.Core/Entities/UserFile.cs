@@ -14,6 +14,8 @@ namespace SecureShare.WebAPI.Core.Entities
 
         [Required]
         public string FileName { get; set; }
+        [Required]
+        public string FileType { get; set; }
 
         [Required]
         public Guid OwnerId { get; set; }
