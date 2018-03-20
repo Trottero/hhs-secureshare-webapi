@@ -23,5 +23,10 @@ namespace SecureShare.WebAPI.Infrastructure.Repositories
         {
             return GetAsync(null, null, e => e.Include(o => o.Owner).Include(z => z.SharedWith));
         }
+
+        public Task<IEnumerable<UserFile>> GetFromUserAndSharedWithAsync(Guid id)
+        {
+            return GetAsync(e => e.OwnerId == id, null, e => e.Include(o => o.Owner).Include(s => s.SharedWith));
+        }
     }
 }

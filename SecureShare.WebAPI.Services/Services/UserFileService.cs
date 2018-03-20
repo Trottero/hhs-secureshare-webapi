@@ -38,5 +38,10 @@ namespace SecureShare.WebAPI.Services.Services
         {
             return _userFileRepository.GetAllWithOwnerAndSharedWithAsync();
         }
+
+        public Task<IEnumerable<UserFile>> GetFromUserAndSharedWithAsync(Guid id)
+        {
+            return _userFileRepository.GetFromUserAndSharedWithAsync(id);
+        }
     }
 }

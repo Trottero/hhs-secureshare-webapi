@@ -27,7 +27,7 @@ namespace SecureShare.WebAPI.Controllers
             _userFileService = userFileService;
         }
 
-        // GET: api/UserFiles
+        // GET: api/files
         [HttpGet]
         public async Task<IActionResult> GetUserFile()
         {
@@ -35,7 +35,7 @@ namespace SecureShare.WebAPI.Controllers
             return Ok(await _userFileService.GetAllWithOwnerAndSharedWithAsync());
         }
 
-        // GET: api/UserFiles/5
+        // GET: api/files/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUserFile([FromRoute] Guid id)
         {
@@ -54,7 +54,7 @@ namespace SecureShare.WebAPI.Controllers
             return Ok(userFile);
         }
 
-        // POST: api/UserFiles
+        // POST: api/files
         [HttpPost]
         public async Task<IActionResult> PostUserFile([FromBody] UserFile userFile)
         {
@@ -67,7 +67,7 @@ namespace SecureShare.WebAPI.Controllers
             return CreatedAtAction("GetUserFile", new { id = userFile.UserFileId }, userFile);
         }
 
-        // DELETE: api/UserFiles/5
+        // DELETE: api/files/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUserFile([FromRoute] Guid id)
         {
@@ -85,6 +85,14 @@ namespace SecureShare.WebAPI.Controllers
             await _userFileService.DeleteAsync(userFile);
 
             return Ok(userFile);
+        }
+
+        //GET: api/files/00000-0000-000
+        //Gets all files from specified user
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetFilesFromUser([FromRoute] Guid id)
+        {
+            return Ok(await _userFileService.GetFromUserAndSharedWithAsync(id));
         }
     }
 }

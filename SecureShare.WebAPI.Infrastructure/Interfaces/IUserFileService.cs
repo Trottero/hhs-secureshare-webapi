@@ -11,6 +11,6 @@ namespace SecureShare.WebAPI.Infrastructure.Interfaces
         Task<UserFile> GetUserFileWithUserAsync(Guid id);
 
         Task<IEnumerable<UserFile>> GetAllWithOwnerAndSharedWithAsync();
-
+        Task<IEnumerable<UserFile>> GetFromUserAndSharedWithAsync(Guid id);
     }
 }
