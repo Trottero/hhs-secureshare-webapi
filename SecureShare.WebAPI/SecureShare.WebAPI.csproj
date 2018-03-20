@@ -18,7 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SecureShare.WebApi.Core\SecureShare.WebAPI.Core.csproj" />
+    <ProjectReference Include="..\SecureShare.WebAPI.Core\SecureShare.WebAPI.Core.csproj" />
+    <ProjectReference Include="..\SecureShare.WebAPI.Infrastructure\SecureShare.WebAPI.Infrastructure.csproj" />
     <ProjectReference Include="..\SecureShare.WebAPI.Services\SecureShare.WebAPI.Services.csproj" />
   </ItemGroup>
 
