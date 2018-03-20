@@ -87,9 +87,9 @@ namespace SecureShare.WebAPI.Controllers
             return Ok(userFile);
         }
 
-        //GET: api/files/00000-0000-000
+        //GET: api/files/user/00000-0000-000
         //Gets all files from specified user
-        [HttpGet("{id}")]
+        [HttpGet("/user/{id}")]
         public async Task<IActionResult> GetFilesFromUser([FromRoute] Guid id)
         {
             return Ok(await _userFileService.GetFromUserAndSharedWithAsync(id));
