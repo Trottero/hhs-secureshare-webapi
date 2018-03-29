@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -28,5 +29,10 @@ namespace SecureShare.WebAPI.Infrastructure.Repositories
         {
             return GetAsync(e => e.OwnerId == id, null, e => e.Include(o => o.Owner).Include(s => s.SharedWith));
         }
+
+	    public Task<IEnumerable<UserFile>> GetFilesSharedWithUserWithOwner(Guid id)
+	    {
+		    return  GetAsync(e => e.SharedWith.Any(s => s.UserId == id), null, e => e.Include(o => o.Owner));
+	    }
     }
 }

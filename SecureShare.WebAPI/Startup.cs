@@ -10,45 +10,46 @@ using SecureShare.WebAPI.Services.Services;
 
 namespace SecureShare.WebAPI
 {
-    public class Startup
-    {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+	public class Startup
+	{
+		public Startup(IConfiguration configuration)
+		{
+			Configuration = configuration;
+		}
 
-        public IConfiguration Configuration { get; }
+		public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddMvc().AddJsonOptions(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+		// This method gets called by the runtime. Use this method to add services to the container.
+		public void ConfigureServices(IServiceCollection services)
+		{
+			services.AddMvc().AddJsonOptions(options =>
+				options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
-            services.AddDbContext<SecureShareWebAPIContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("SecureShareWebAPIContext")));
+			services.AddDbContext<SecureShareWebAPIContext>(options =>
+				options.UseSqlServer(Configuration.GetConnectionString("SecureShareWebAPIContext")));
 
-            services.AddScoped(typeof(IEntityService<>), typeof(EntityService<>));
-            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-            services.AddScoped(typeof(IReadOnlyRepository<>), typeof(ReadOnlyRepository<>));
+			services.AddScoped(typeof(IEntityService<>), typeof(EntityService<>));
+			services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+			services.AddScoped(typeof(IReadOnlyRepository<>), typeof(ReadOnlyRepository<>));
 
-            //custom repositories
-            services.AddTransient<IUserFileRepository, UserFileRepository>();
-            services.AddTransient<IUserRepository, UserRepository>();
+			//custom repositories
+			services.AddTransient<IUserFileRepository, UserFileRepository>();
+			services.AddTransient<IUserRepository, UserRepository>();
 
-            services.AddTransient<IUserFileService, UserFileService>();
-            services.AddTransient<IUserService, UserService>();
-            services.AddTransient<IAzureBlobService, AzureBlobService>();
-        }
+			services.AddTransient<IUserFileService, UserFileService>();
+			services.AddTransient<IUserService, UserService>();
+			services.AddTransient<IAzureBlobService, AzureBlobService>();
+		}
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+		{
+			if (env.IsDevelopment())
+			{
+				app.UseDeveloperExceptionPage();
+			}
 
-            app.UseMvc();
-        }
-    }
+			app.UseMvc();
+		}
+	}
 }
