@@ -18,16 +18,14 @@ namespace SecureShare.WebAPI.Controllers
 			_userfilesUsersEntityService = userfilesUsersEntityService;
 		}
 
-		//GET: api/share/
-		//Gets all files from specified user
+		//POST: api/share/
+		//Shares a file with a user using the Users_Userfiles object
 		[HttpPost("share")]
 		public async Task<IActionResult> ShareUserFileWithUser([FromBody] Users_UserFiles fileToShare)
 		{
 			if (!ModelState.IsValid) return BadRequest(ModelState);
 			await _userfilesUsersEntityService.AddAsync(fileToShare);
-			return RedirectToAction("GetUserFile", "UserFiles");
-
-
+		    return Ok(fileToShare);
 		}
 	}
 }
