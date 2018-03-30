@@ -40,22 +40,5 @@ namespace SecureShare.WebAPI.Controllers
         {
             return (await _azureBlobService.GetFromBlobAsync("files", id.ToString()));
         }
-
-        //DELETE: api/blob/{id}
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteBlob([FromRoute] Guid id)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var blobId = await _azureBlobService.DeleteFromBlobAsync("files", id.ToString());
-            if (blobId == new Guid())
-            {
-                return BadRequest();
-            }
-            return Ok(blobId);
-        }
     }
 }

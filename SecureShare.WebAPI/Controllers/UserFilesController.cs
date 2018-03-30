@@ -11,12 +11,14 @@ namespace SecureShare.WebAPI.Controllers
 	public class UserFilesController : Controller
 	{
 		private readonly IUserFileService _userFileService;
-		private readonly SecureShareWebAPIContext _context;
+	    private readonly IAzureBlobService _azureBlobService;
+	    private readonly SecureShareWebAPIContext _context;
 
-		public UserFilesController(SecureShareWebAPIContext context, IUserFileService userFileService)
+		public UserFilesController(SecureShareWebAPIContext context, IUserFileService userFileService, IAzureBlobService azureBlobService)
 		{
 			_context = context;
 			_userFileService = userFileService;
+		    _azureBlobService = azureBlobService;
 		}
 
 		// GET: api/files
@@ -64,9 +66,13 @@ namespace SecureShare.WebAPI.Controllers
 
 			if (userFile == null) return NotFound();
 
+            //Delete the userfile metadata
 			await _userFileService.DeleteAsync(userFile);
 
-			return Ok(userFile);
+            //delete the blob from azure
+		    await _azureBlobService.DeleteFromBlobAsync("files", userFile.BlobId.ToString());
+
+            return Ok(userFile);
 		}
 
 		//GET: api/files/user/00000-0000-000
