@@ -7,7 +7,7 @@ using SecureShare.WebAPI.Infrastructure.Interfaces;
 namespace SecureShare.WebAPI.Controllers
 {
 	[Produces("application/json")]
-	[Route("api/Share")]
+	[Route("api/")]
 	public class SharingController : Controller
 	{
 		private readonly IEntityService<Users_UserFiles> _userfilesUsersEntityService;
@@ -20,12 +20,14 @@ namespace SecureShare.WebAPI.Controllers
 
 		//GET: api/share/
 		//Gets all files from specified user
-		[HttpPost]
+		[HttpPost("share")]
 		public async Task<IActionResult> ShareUserFileWithUser([FromBody] Users_UserFiles fileToShare)
 		{
 			if (!ModelState.IsValid) return BadRequest(ModelState);
 			await _userfilesUsersEntityService.AddAsync(fileToShare);
 			return RedirectToAction("GetUserFile", "UserFiles");
+
+
 		}
 	}
 }
