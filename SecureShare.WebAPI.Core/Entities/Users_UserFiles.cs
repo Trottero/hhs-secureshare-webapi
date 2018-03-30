@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SecureShare.WebAPI.Core.Entities
@@ -6,6 +7,7 @@ namespace SecureShare.WebAPI.Core.Entities
 	public class Users_UserFiles : Entity
 	{
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
 		public Guid PermissionId { get; set; }
 
 		public Guid UserId { get; set; }

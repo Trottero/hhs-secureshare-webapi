@@ -7,7 +7,7 @@ using SecureShare.WebAPI.Infrastructure.Interfaces;
 namespace SecureShare.WebAPI.Controllers
 {
 	[Produces("application/json")]
-	[Route("api/")]
+	[Route("api")]
 	public class SharingController : Controller
 	{
 		private readonly IEntityService<Users_UserFiles> _userfilesUsersEntityService;
