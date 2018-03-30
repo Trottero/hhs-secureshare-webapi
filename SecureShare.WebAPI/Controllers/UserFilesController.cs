@@ -77,6 +77,8 @@ namespace SecureShare.WebAPI.Controllers
 			return Ok(await _userFileService.GetFromUserAndSharedWithAsync(id));
 		}
 
+		//GET: api/files/sharedwith/00000-0000-000
+		//Gets all files shared with user
 		[HttpGet("sharedwith/{id}")]
 		public async Task<IActionResult> GetFilesSharedWith([FromRoute] Guid id)
 		{

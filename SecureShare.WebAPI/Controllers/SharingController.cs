@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SecureShare.WebAPI.Core.Entities;
 using SecureShare.WebAPI.Infrastructure.Interfaces;
@@ -17,6 +18,8 @@ namespace SecureShare.WebAPI.Controllers
 			_userfilesUsersEntityService = userfilesUsersEntityService;
 		}
 
+		//GET: api/share/
+		//Gets all files from specified user
 		[HttpPost]
 		public async Task<IActionResult> ShareUserFileWithUser([FromBody] Users_UserFiles fileToShare)
 		{
