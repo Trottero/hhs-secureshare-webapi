@@ -12,11 +12,9 @@ namespace SecureShare.WebAPI.Controllers
 	{
 		private readonly IUserFileService _userFileService;
 	    private readonly IAzureBlobService _azureBlobService;
-	    private readonly SecureShareWebAPIContext _context;
 
-		public UserFilesController(SecureShareWebAPIContext context, IUserFileService userFileService, IAzureBlobService azureBlobService)
+		public UserFilesController(IUserFileService userFileService, IAzureBlobService azureBlobService)
 		{
-			_context = context;
 			_userFileService = userFileService;
 		    _azureBlobService = azureBlobService;
 		}
@@ -25,7 +23,6 @@ namespace SecureShare.WebAPI.Controllers
 		[HttpGet]
 		public async Task<IActionResult> GetUserFile()
 		{
-			_context.Database.EnsureCreated();
 			return Ok(await _userFileService.GetAllWithOwnerAndSharedWithAsync());
 		}
 
