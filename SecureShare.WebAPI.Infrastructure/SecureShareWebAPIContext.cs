@@ -18,7 +18,7 @@ public class SecureShareWebAPIContext : DbContext
         modelBuilder.Entity<User>().ToTable("Users");
         modelBuilder.Entity<Users_UserFiles>().ToTable("Users_UserFiles");
 
-        modelBuilder.Entity<Users_UserFiles>().HasKey(uu => new {uu.UserId, uu.UserFileId});
+        modelBuilder.Entity<Users_UserFiles>().HasIndex(uu => new {uu.UserId, uu.UserFileId});
 
         modelBuilder.Entity<Users_UserFiles>()
             .HasOne(e => e.User)
